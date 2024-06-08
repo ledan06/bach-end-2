@@ -40,10 +40,18 @@ module.exports.index = async(req, res) => {
         req.query,
         countProducts
 );
+    //Sort
+    let sort = {};
 
-    
+    if(req.query.sortKey && req.query.sortValue){
+        sort[req.query.sortKey] = req.query.sortValue
+        //Truyền 1 object phải truyền ngoặc vuông
+    }else{
+        sort.position = "desc"
+    }
+    //Sort end
     const products = await Product.find(find)
-    .sort({position: "desc"})//sắp xếp sản phẩm
+    .sort(sort)//sắp xếp sản phẩm
     .limit(objectPagination.limitItems)
     .skip(objectPagination.skip);
 
@@ -141,9 +149,6 @@ module.exports.createPost = async(req,res) => {
     
     else{
         req.body.position = parseInt(req.body.position);
-    }
-    if(req.file){
-        req.body.thumbnail = `/uploads/${req.file.filename}`;
     }
 
     const product = new Product(req.body);
