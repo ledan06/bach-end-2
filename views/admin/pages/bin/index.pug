@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug
+block main
+    h1 Thùng rác
+    .card.mb-3 
+        .card-header Danh sách
+        .card-body 
+            .row
+            table(
+                class="table table-hover table-sm"
+                checkbox-multi
+            ) 
+                thead 
+                    tr 
+                        th Tên danh sách
+                        th Hành động 
+                tbody
+                    tr 
+                        td 
+                            p Danh mục sản phẩm 
+                        td 
+                            a(
+                                href=`${prefixAdmin}/bins/product-category/`
+                                class="btn btn-secondary btn-sm"
+                                ) Chi tiết
+                    tr 
+                        td 
+                            p Danh sách sản phẩm 
+                        td 
+                            a(
+                                href=`${prefixAdmin}/bins/product/`
+                                class="btn btn-secondary btn-sm"
+                                ) Chi tiết
+                            

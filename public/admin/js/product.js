@@ -40,3 +40,8 @@ if(buttonDelete.length > 0){
 }
 
 
+//Cảnh báo xóa vĩnh viễn
+function confirmDelete() {
+    return confirm("Khi đồng ý danh mục sẽ bị xóa vĩnh viễn");
+  }
+
