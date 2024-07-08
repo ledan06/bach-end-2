@@ -84,3 +84,25 @@ module.exports.deleteCategory = async (req, res)=> {
     req.flash("success", "Đã xóa vĩnh viễn")
     res.redirect("back");
 }
+
+//[PATCH] /admin/bins/product/change-/change-multi
+module.exports.changeMulti = async (req, res) => {
+    const type = req.body.type;
+    const ids = req.body.ids.split(", ");
+ 
+    switch (type) {
+     case "restore":
+         await Product.updateMany({ _id: { $in: ids} }, {
+            deleted: false,
+         });
+         req.flash("success", "Khôi phục thành công!")
+         break;
+     case "delete-all":
+         await Product.deleteMany({ _id: { $in: ids} }); 
+         req.flash("success", "Đã xóa vĩnh viễn")
+         break;
+    default:
+         break;
+    }
+    res.redirect("back");
+ }

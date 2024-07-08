@@ -20,3 +20,24 @@ mixin form-change-multi(path)
                     class="form-control d-none"
                     )  
             button(type="submit" class="btn btn-primary") Áp dụng
+
+mixin form-change-multi_bin(path)
+    form(
+        action= path
+        method="POST"
+        form-change-multi
+    )
+        .d-flex.align-items-start 
+            .form-group 
+                select(name="type" class="form-control")
+                    option(disabled selected) -- Chọn Hành Động --
+                    option(value="restore") Khôi phục 
+                    option(value="delete-all") Xóa vĩnh viễn 
+            .form-group 
+                input(
+                    type="text"
+                    name="ids"
+                    value=""
+                    class="form-control d-none"
+                    )  
+            button(type="submit" class="btn btn-primary") Áp dụng

@@ -1,0 +1,34 @@
+extends ../../layouts/default.pug 
+
+block main 
+    if (records.title)
+        h1(class="mb-4") #{records.title}
+    if (records.thumbnail)
+        div(class="mb-4")
+            img(
+                src=records.thumbnail
+                style="width: 100px"
+            )
+    if (records.description)
+        div(class="mb-4") !{records.description}
+    if (records.status)
+        div(class="mb-4")
+            span Trạng thái: 
+            if (records.status == "active")
+                span(class="badge badge-success") Hoạt động
+            else
+                span(class="badge badge-danger") Dừng hoạt động
+
+    if (records.position)
+        div(class="mb-4") Vị trí: <b>#{records.position}</b>
+
+
+    a(
+        href=`${prefixAdmin}/blog/edit/${records.id}`
+        class="btn btn-warning"
+        ) Chỉnh sửa
+    a(
+        href=`${prefixAdmin}/blog`
+        class="btn btn-danger back-button"
+    ) Quay về
+    script(src="/admin/js/product.js")

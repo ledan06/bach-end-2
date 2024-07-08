@@ -9,7 +9,7 @@ include ../../mixins/moment.pug
 block main 
     if(records.length > 0)
         +alert-success(5000)
-        h1 Thùng rác danh mục sản phẩm 
+        h1 Các sản phẩm đã bị xóa  
         //- .card.mb-3 
         //-     .card-header Bộ lọc và tìm kiếm 
         //-     .card-body 
@@ -24,7 +24,7 @@ block main
                 .card-body 
                     .row
                         .col-8
-                            +form-change-multi(`${prefixAdmin}/products-category/change-multi?_method=PATCH`)
+                            +form-change-multi_bin(`${prefixAdmin}/bins/product/change-multi?_method=PATCH`)
                         .col-4 
 
                     table(

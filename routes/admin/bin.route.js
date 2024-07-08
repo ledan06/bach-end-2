@@ -5,6 +5,9 @@ const controller = require("../../controllers/admin/bin.controller")
 router.get('/', controller.index)
 router.get('/product-category', controller.binCategory)
 
+router.patch('/product/change-multi', controller.changeMulti);
+
+
 router.patch('/product-category/restore/:id', controller.restoreCategory)
 router.delete('/product-category/delete/:id', controller.deleteCategory)
 
