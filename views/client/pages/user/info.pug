@@ -1,0 +1,20 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+    .container.my-5
+        .row
+            .col-12
+                +box-head("Thông tin tài khoản")
+
+                .card.mt-4
+                    .card-body
+                        if user.fullName
+                            .row.mb-3
+                                .col-sm-4.font-weight-bold Họ tên:
+                                .col-sm-8 #{user.fullName}
+
+                        if user.email
+                            .row.mb-3
+                                .col-sm-4.font-weight-bold Email:
+                                .col-sm-8 #{user.email}
