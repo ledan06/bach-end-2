@@ -1,0 +1,66 @@
+extends ../../layouts/default.pug 
+include ../../mixins/alert.pug 
+include ../../mixins/moment.pug 
+
+block main 
+    +alert-success(5000)
+    h1 Danh sách đơn hàng
+
+    .card.mb-3 
+        .card-header Danh sách
+        .card-body 
+            table(
+                class="table table-hover table-sm"
+                checkbox-multi
+            ) 
+                thead 
+                    tr 
+                        th 
+                            input(type="checkbox" name= "checkall")
+                        th STT 
+                        th ID đơn hàng
+                        th Người đặt
+                        th Tổng tiền
+                        th Trạng thái 
+                        th Thời gian đặt hàng
+                        th Hành động
+                tbody
+                    each item, index in orders
+                        tr 
+                            th 
+                                input(type="checkbox" name= "checkall")
+                            td #{index+1}
+                            td #{item.id}
+                            td 
+                                if(item.accound == 1)
+                                    a Đã tạo tài khoản
+                                else
+                                    a Chưa tạo tài khoản
+                                    
+                                
+                            td #{item.totalPrice}
+                            td
+                                if(item.status == "order")
+                                    a(
+                                        href="javascript:;" 
+                                        data-status=item.status
+                                        data-id=item.id
+                                        button-change-status
+                                        class="badge badge-primary"
+                                        ) Đã đặt hàng
+                                if(item.status == "confirm")
+                                    a(
+                                        href="javascript:;" 
+                                        data-status=item.status
+                                        data-id=item.id
+                                        button-change-status
+                                        class="badge badge-success"
+                                        ) Đã Xác nhận
+                            td 
+                                +formatDateTime(item.createdAt) 
+                            td 
+                                a(
+                                    href=`${prefixAdmin}/orders/detail/${item.id}`
+                                    class="btn btn-secondary btn-sm"
+                                    ) Chi tiết
+

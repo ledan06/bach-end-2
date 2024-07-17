@@ -1,0 +1,113 @@
+extends ../../layouts/default.pug 
+include ../../mixins/alert.pug 
+include ../../mixins/moment.pug 
+
+block main 
+    +alert-success(5000)
+    h1 Thông tin đơn hàng
+    .card.mb-3 
+        .card-header Thông tin khách hàng 
+        .card-body 
+            table.table.table-bordered
+                thead.thead-light
+                    tr 
+                        th Họ và tên
+                        th Số điện thoại 
+                        th Địa chỉ nhận hàng
+                tbody
+                    tr 
+                        td #{orderInfo.userInfo.fullName}
+                        td #{orderInfo.userInfo.phone}
+                        td #{orderInfo.userInfo.address}
+
+    .card.mb-3 
+        .card-header Thông tin Đơn hàng
+        .card-body 
+            table.table.table-bordered
+                thead.thead-light
+                    tr 
+                        th Mã đơn hàng
+                        th Ngày đặt 
+                        th Trạng thái đơn hàng
+                tbody
+                    tr 
+                        td #{orderInfo.id}
+                        td 
+                            +formatDateTime(orderInfo.createdAt) 
+                        td
+                            if(orderInfo.status == "order")
+                                a(
+                                    href="javascript:;" 
+                                    data-status=orderInfo.status
+                                    data-id=orderInfo.id
+                                    button-change-status
+                                    class="badge badge-primary"
+                                ) Đã đặt hàng
+                            if(orderInfo.status == "confirm")
+                                a(
+                                    href="javascript:;" 
+                                    data-status=orderInfo.status
+                                    data-id=orderInfo.id
+                                    button-change-status
+                                    class="badge badge-success"
+                                ) Đã Xác nhận
+
+    .card.mb-3 
+        .card-header Danh sách sản phẩm
+        .card-body 
+            table.table.table-responsive-md.table-bordered
+                thead.thead-light
+                    tr 
+                        th STT 
+                        th Hình ảnh 
+                        th Tiêu đề
+                        th Giá gốc
+                        th Giá đã sale 
+                        th Số lượng
+                        th Hành động
+                tbody
+                    each item, index in orderInfo.product
+                        tr 
+                            td #{index + 1}
+                            td  
+                                img(
+                                    src=item.productInfo.thumbnail
+                                    style="width: 100px"
+                                )
+                            td #{item.productInfo.title}
+                            td #{item.productInfo.price}$
+                            td #{item.productInfo.priceNew}$
+                            td #{item.quantity}
+                            td 
+                                a(
+                                    href=`${prefixAdmin}/products/detail/${item.productInfo.id}`
+                                    class="btn btn-warning"
+                                ) Chi tiết
+
+    .card.mb-3 
+        .card-header Tổng kết đơn hàng
+        .card-body 
+            table.table.table-bordered
+                tbody
+                    tr 
+                        th Tổng tiền hàng
+                        td #{orderInfo.totalPrice}$
+                    tr 
+                        th Phí vận chuyển
+                        td 20$
+                    tr 
+                        th.text-uppercase.font-weight-bold.text-danger Tổng chi phí
+                        td.font-weight-bold.text-danger #{orderInfo.totalPrice + 20}$
+    a(
+        href=`${prefixAdmin}/orders`
+        class="btn btn-danger back-button"
+    ) Quay về
+
+
+    form(
+        action=""
+        method="POST"
+        id="form-change-status"
+        data-path=`${prefixAdmin}/orders/change-status`
+    ) 
+    script(src="/admin/js/order.js")
