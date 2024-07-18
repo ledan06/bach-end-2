@@ -1,0 +1,44 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug
+
+block main
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head("Chat")
+
+        .row 
+            .col-12 
+                .chat 
+                    .inner-body 
+                        .inner-incoming 
+                            .inner-name Em Yêu 
+                            .inner-content 
+                                | Anh ơi sang nhà e nha, nhà e không có ai ở nhà cả
+                        .inner-outgoing 
+                            .inner-content
+                                | Thế à? OK e iu 
+                        .inner-incoming 
+                            .inner-name Em Yêu 
+                            .inner-content 
+                                | Nhanh nha nhanh nha
+                        .inner-outgoing 
+                            .inner-content
+                                | CK đến rồi mà thấy ai ở nhà đâu e? Khóa của mà 
+                        .inner-incoming 
+                            .inner-name Em Yêu 
+                            .inner-content 
+                                | Thì e bảo nhà e không có ai mà
+                    .inner-foot 
+                        form(
+                            class="inner-form"
+                            action=""
+                        )    
+                            input(
+                                type="text"
+                                placeholder="Nhập nội dung..."
+                                name="content"
+                                class="form-control"
+                            )
+                            button.btn.btn-primary 
+                                i.fa-solid.fa-paper-plane

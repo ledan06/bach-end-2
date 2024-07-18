@@ -239,3 +239,74 @@
     cursor: pointer;
 }
 /* End show Alert */
+
+
+/* Chat */
+/* Styles for chat interface */
+.chat {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+.inner-body {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.inner-incoming, .inner-outgoing {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.inner-incoming {
+    background: #e9f7ef;
+    align-self: flex-start;
+}
+
+.inner-outgoing {
+    background: #cfe2ff;
+    align-self: flex-end;
+    text-align: right;
+    margin-left: auto;
+}
+
+.inner-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.inner-content {
+    margin-bottom: 5px;
+}
+
+.inner-foot {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.inner-form {
+    display: flex;
+    width: 100%;
+}
+
+.inner-form input.form-control {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.inner-form button.btn {
+    flex-shrink: 0;
+}
+
+/* EnD Chat */
