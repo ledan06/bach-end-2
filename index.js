@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const flash = require('express-flash')
 const moment = require("moment")
+const http = require('http');
+const { Server } = require("socket.io");
 require("dotenv").config()
 
 const database = require("./config/database")
@@ -20,6 +22,13 @@ database.connect();
 
 const app = express()
 const port = process.env.PORT
+
+// SocketIo
+const server = http.createServer(app);
+const io = new Server(server);
+global._io = io
+//End SocketIo
+
 app.use(methodOverride('_method'));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,6 +62,6 @@ app.get("*", (req, res) => {
   })
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`App listening on port ${port}`)
   })
