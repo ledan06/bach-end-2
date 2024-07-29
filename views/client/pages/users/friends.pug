@@ -8,10 +8,10 @@ block main
         .row   
             .col-12 
                 +box-head(pageTitle)
-        .row(data-users-not-friend=user.id)
+        .row(data-users-friend = user.id)  
             each user in users
-                .col-6(user-id = user.id) 
-                    div(class="box-user")
+                .col-6(user-id = user.id)  
+                    div(class="box-user add")
                         div(class="inner-avatar")
                             img(
                                 src=(user.avatar ? user.avatar : "https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg")
@@ -20,14 +20,13 @@ block main
                         div(class="inner-info")
                             div(class="inner-name") #{user.fullName}
                             div(class="inner-buttons")
-                                button(
+                                a(
+                                    href="#"
                                     class="btn btn-sm btn-primary mr-1"
-                                    btn-add-friend = user.id
-                                ) Kết bạn 
-                                button(
-                                    class="btn btn-sm btn-secondary mr-1"
-                                    btn-cancel-friend = user.id
-                                ) Hủy
-
-block script 
+                                ) Nhắn tin
+                        div(
+                            class="inner-status"
+                            status=user.statusOnline
+                        ) <i class="fa-solid fa-circle"></i>
+block script
     script(src="/js/users.js")
